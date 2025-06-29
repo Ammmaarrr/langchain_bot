@@ -78,10 +78,11 @@
 
         function sendMessage() {
             const inputElem = document.getElementById('chat-input');
-            const message = inputElem.value;
-            if (message.trim()) {
+            const message = inputElem.value.trim();
+            if (message) {
                 appendMessage('user', message);
                 inputElem.value = '';
+                inputElem.disabled = true; // Prevent multiple sends
 
                 fetch('/chat', {
                     method: 'POST',
@@ -89,14 +90,45 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        message: message
+                        message: message,
+                        session_id: 'web_session_' + Date.now()
                     })
-                }).then(response => response.json())
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     appendMessage('bot', data.response);
+                    if (data.lead_score > 0) {
+                        console.log('Lead score:', data.lead_score);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    appendMessage('bot', 'Sorry, I encountered an error. Please try again.');
+                })
+                .finally(() => {
+                    inputElem.disabled = false;
+                    inputElem.focus();
                 });
             }
         }
+
+        // Handle Enter key press
+        document.getElementById('chat-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Focus on input when page loads
+        window.addEventListener('load', function() {
+            document.getElementById('chat-input').focus();
+        });
     </script>
 </body>
 </html>

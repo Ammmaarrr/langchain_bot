@@ -17,27 +17,100 @@ class MockOpenAI:
     
     def __init__(self):
         self.responses = {
-            "greeting": "Hello! I'm your TechCorp support assistant. How can I help you today?",
-            "product_inquiry": "I'd be happy to help you learn about our products. We offer enterprise software solutions, cloud services, and consulting.",
-            "support": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
-            "pricing": "For pricing information, I can schedule a call with our sales team who can provide a customized quote based on your needs.",
-            "default": "Thank you for your message. Let me help you with that inquiry."
+            "greeting": [
+                "Hello! I'm your TechCorp support assistant. How can I help you today?",
+                "Hi there! Welcome to TechCorp. What can I assist you with?",
+                "Greetings! I'm here to help you with any questions about our services."
+            ],
+            "product_inquiry": [
+                "I'd be happy to help you learn about our products. We offer enterprise software solutions, cloud services, and consulting.",
+                "Great question! Our main offerings include AI-powered business automation, cloud infrastructure, and custom software development.",
+                "We specialize in enterprise solutions including CRM systems, data analytics platforms, and digital transformation services."
+            ],
+            "support": [
+                "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+                "I'm here to help with your technical concerns. Could you please describe the specific issue you're experiencing?",
+                "Our technical support team is ready to assist. What problem are you encountering?"
+            ],
+            "pricing": [
+                "For pricing information, I can schedule a call with our sales team who can provide a customized quote based on your needs.",
+                "Our pricing is tailored to each client's requirements. Would you like me to connect you with our sales team for a detailed quote?",
+                "Pricing varies based on your specific needs and scale. Let me arrange a consultation to discuss your requirements."
+            ],
+            "demo": [
+                "I'd be happy to arrange a demo for you! Our product demonstrations show real-world applications of our solutions.",
+                "Absolutely! A demo is a great way to see our platform in action. When would be convenient for you?",
+                "Perfect! Our demos typically cover key features and can be customized to your industry needs."
+            ],
+            "enterprise": [
+                "Our enterprise solutions are designed for large-scale operations with advanced security and compliance features.",
+                "For enterprise clients, we offer dedicated support, custom integrations, and scalable architecture.",
+                "Enterprise packages include priority support, advanced analytics, and white-label options."
+            ],
+            "integration": [
+                "We support integrations with major platforms including Salesforce, Microsoft 365, and Google Workspace.",
+                "Our API-first approach makes integration seamless with your existing tech stack.",
+                "Integration typically takes 2-4 weeks depending on complexity and can be done with minimal downtime."
+            ],
+            "goodbye": [
+                "Thank you for contacting TechCorp! Have a great day and feel free to reach out anytime.",
+                "It was great helping you today! Don't hesitate to contact us if you need anything else.",
+                "Goodbye! We look forward to working with you soon."
+            ],
+            "default": [
+                "Thank you for your message. Let me help you with that inquiry.",
+                "I'm here to assist you. Could you please provide more details about what you're looking for?",
+                "That's an interesting question. How can I best help you with your needs?"
+            ]
         }
+        self.conversation_count = 0
     
     def generate_response(self, user_input: str, context: str = "") -> str:
         """Generate a mock AI response based on user input"""
         user_input_lower = user_input.lower()
+        self.conversation_count += 1
         
-        if any(word in user_input_lower for word in ["hello", "hi", "hey"]):
-            return self.responses["greeting"]
-        elif any(word in user_input_lower for word in ["product", "service", "what do you"]):
-            return self.responses["product_inquiry"]
-        elif any(word in user_input_lower for word in ["support", "help", "problem", "issue"]):
-            return self.responses["support"]
-        elif any(word in user_input_lower for word in ["price", "cost", "pricing"]):
-            return self.responses["pricing"]
+        # Greeting patterns
+        if any(word in user_input_lower for word in ["hello", "hi", "hey", "good morning", "good afternoon"]):
+            return self._get_random_response("greeting")
+        
+        # Goodbye patterns
+        elif any(word in user_input_lower for word in ["bye", "goodbye", "thanks", "thank you", "that's all"]):
+            return self._get_random_response("goodbye")
+        
+        # Product/Service inquiries
+        elif any(word in user_input_lower for word in ["product", "service", "what do you", "offerings", "solutions"]):
+            return self._get_random_response("product_inquiry")
+        
+        # Support/Help requests
+        elif any(word in user_input_lower for word in ["support", "help", "problem", "issue", "trouble", "error"]):
+            return self._get_random_response("support")
+        
+        # Pricing inquiries
+        elif any(word in user_input_lower for word in ["price", "cost", "pricing", "quote", "budget"]):
+            return self._get_random_response("pricing")
+        
+        # Demo requests
+        elif any(word in user_input_lower for word in ["demo", "demonstration", "show me", "trial"]):
+            return self._get_random_response("demo")
+        
+        # Enterprise inquiries
+        elif any(word in user_input_lower for word in ["enterprise", "large scale", "corporation", "business"]):
+            return self._get_random_response("enterprise")
+        
+        # Integration questions
+        elif any(word in user_input_lower for word in ["integration", "integrate", "api", "connect"]):
+            return self._get_random_response("integration")
+        
+        # Default response
         else:
-            return self.responses["default"]
+            return self._get_random_response("default")
+    
+    def _get_random_response(self, category: str) -> str:
+        """Get a random response from the specified category"""
+        import random
+        responses = self.responses.get(category, self.responses["default"])
+        return random.choice(responses)
 
 class MockGoogleSheets:
     """Mock Google Sheets service for local testing"""
