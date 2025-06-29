@@ -1,0 +1,61 @@
+{
+  "faqs": [
+    {
+      "id": "faq_001",
+      "category": "general",
+      "question": "What does TechCorp Solutions do?",
+      "answer": "TechCorp Solutions is a leading provider of business automation software, specializing in CRM platforms, marketing automation, and data analytics solutions for businesses of all sizes.",
+      "keywords": ["company", "business", "what do you do", "services"]
+    },
+    {
+      "id": "faq_002",
+      "category": "products",
+      "question": "What products do you offer?",
+      "answer": "We offer three main products: 1) CRM Platform ($99-499/month) for complete customer lifecycle management, 2) Marketing Automation ($199-999/month) for multi-channel campaigns, and 3) Analytics Suite ($299-1299/month) for real-time business insights.",
+      "keywords": ["products", "pricing", "features", "what do you sell"]
+    },
+    {
+      "id": "faq_003",
+      "category": "pricing",
+      "question": "How much do your products cost?",
+      "answer": "Our pricing varies by product and features: CRM Platform starts at $99/month, Marketing Automation at $199/month, and Analytics Suite at $299/month. We offer custom enterprise packages for larger organizations.",
+      "keywords": ["pricing", "cost", "price", "expensive", "budget"]
+    },
+    {
+      "id": "faq_004",
+      "category": "support",
+      "question": "What kind of support do you provide?",
+      "answer": "All our products include 24/7 customer support, comprehensive training, onboarding assistance, and ongoing technical support. We also provide dedicated account managers for enterprise clients.",
+      "keywords": ["support", "help", "assistance", "training", "onboarding"]
+    },
+    {
+      "id": "faq_005",
+      "category": "integration",
+      "question": "Can your products integrate with our existing systems?",
+      "answer": "Yes! Our products offer extensive integration capabilities with popular business tools including Salesforce, HubSpot, Mailchimp, Slack, Microsoft Office 365, and hundreds of other applications through our API and webhook support.",
+      "keywords": ["integration", "API", "connect", "existing systems", "compatibility"]
+    },
+    {
+      "id": "faq_006",
+      "category": "security",
+      "question": "How secure is your platform?",
+      "answer": "Security is our top priority. We use enterprise-grade encryption, SOC 2 compliance, GDPR compliance, regular security audits, and offer single sign-on (SSO) integration for enhanced security.",
+      "keywords": ["security", "safe", "encryption", "compliance", "GDPR", "SOC 2"]
+    },
+    {
+      "id": "faq_007",
+      "category": "trial",
+      "question": "Do you offer a free trial?",
+      "answer": "Yes! We offer a 14-day free trial for all our products with full feature access. No credit card required to start your trial. You can upgrade anytime during or after the trial period.",
+      "keywords": ["free trial", "demo", "test", "try", "evaluation"]
+    },
+    {
+      "id": "faq_008",
+      "category": "implementation",
+      "question": "How long does implementation take?",
+      "answer": "Implementation time varies by complexity: Basic setups take 1-2 weeks, standard implementations 2-4 weeks, and complex enterprise deployments 4-8 weeks. We provide dedicated implementation specialists to ensure smooth deployment.",
+      "keywords": ["implementation", "setup", "deployment", "how long", "timeline"]
+    }
+  ],
+  "last_updated": "2025-06-29T16:55:00Z"
+}

@@ -1,0 +1,177 @@
+# Production Configuration for TechCorp Customer Support Bot
+# This file contains production-ready settings for deployment
+
+# Application Configuration
+app:
+  name: "TechCorp Customer Support Bot"
+  version: "1.0.0"
+  environment: "production"
+  debug: false
+  
+# Server Configuration
+server:
+  host: "0.0.0.0"
+  port: 7860
+  workers: 4
+  timeout: 300
+  max_requests: 1000
+  max_requests_jitter: 50
+
+# Database Configuration
+database:
+  url: "postgresql://chatbot_user:${POSTGRES_PASSWORD}@postgres:5432/chatbot"
+  pool_size: 20
+  max_overflow: 30
+  pool_recycle: 3600
+  echo: false
+
+# Redis Configuration
+redis:
+  url: "redis://redis:6379/0"
+  max_connections: 50
+  socket_timeout: 5
+  socket_connect_timeout: 5
+  health_check_interval: 30
+
+# API Configuration
+api:
+  rate_limit:
+    requests_per_minute: 100
+    burst_size: 150
+  cors:
+    enabled: true
+    origins:
+      - "https://techcorp.com"
+      - "https://app.techcorp.com"
+    methods: ["GET", "POST", "PUT", "DELETE"]
+    headers: ["Content-Type", "Authorization"]
+
+# Security Configuration
+security:
+  secret_key: "${SECRET_KEY}"
+  session_timeout: 3600
+  max_login_attempts: 5
+  lockout_duration: 900
+  csrf_protection: true
+  
+# SSL Configuration
+ssl:
+  enabled: true
+  cert_file: "/etc/nginx/ssl/cert.pem"
+  key_file: "/etc/nginx/ssl/key.pem"
+  redirect_http: true
+
+# OpenAI Configuration
+openai:
+  api_key: "${OPENAI_API_KEY}"
+  model: "gpt-4o-mini"
+  max_tokens: 500
+  temperature: 0.7
+  timeout: 30
+  retry_attempts: 3
+
+# Google Sheets Integration
+google_sheets:
+  credentials_file: "${GOOGLE_SHEETS_CREDENTIALS_FILE}"
+  spreadsheet_id: "${GOOGLE_SHEETS_SPREADSHEET_ID}"
+  batch_size: 100
+  timeout: 30
+
+# Slack Integration
+slack:
+  bot_token: "${SLACK_BOT_TOKEN}"
+  webhook_url: "${SLACK_WEBHOOK_URL}"
+  channels:
+    sales_alerts: "#sales-alerts"
+    technical_support: "#technical-support"
+    management_reports: "#management-reports"
+  timeout: 15
+
+# Lead Qualification Settings
+lead_qualification:
+  scoring_thresholds:
+    hot_lead: 85
+    warm_lead: 70
+    cold_lead: 50
+    unqualified: 30
+  auto_assignment: true
+  notification_threshold: 70
+
+# Monitoring Configuration
+monitoring:
+  enabled: true
+  metrics:
+    conversations_per_minute: true
+    response_time: true
+    error_rate: true
+    lead_conversion: true
+  alerts:
+    high_error_rate: 5.0  # percentage
+    slow_response_time: 5.0  # seconds
+    low_lead_conversion: 10.0  # percentage
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    - type: "file"
+      filename: "/var/log/chatbot/app.log"
+      max_bytes: 104857600  # 100MB
+      backup_count: 5
+    - type: "console"
+      stream: "ext://sys.stdout"
+  loggers:
+    langchain:
+      level: "WARNING"
+    openai:
+      level: "WARNING"
+    google:
+      level: "WARNING"
+
+# Backup Configuration
+backup:
+  enabled: true
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  retention_days: 30
+  destinations:
+    - type: "s3"
+      bucket: "techcorp-chatbot-backups"
+      region: "us-east-1"
+    - type: "local"
+      path: "/backup/chatbot"
+
+# Cache Configuration
+cache:
+  enabled: true
+  default_timeout: 3600
+  max_entries: 10000
+  eviction_policy: "lru"
+
+# Feature Flags
+features:
+  advanced_analytics: true
+  multi_language_support: false
+  voice_integration: false
+  sentiment_analysis: true
+  auto_escalation: true
+
+# Performance Settings
+performance:
+  request_timeout: 30
+  max_concurrent_requests: 100
+  connection_pool_size: 20
+  keep_alive_timeout: 60
+
+# Health Check Configuration
+health_check:
+  enabled: true
+  endpoint: "/health"
+  checks:
+    - database
+    - redis
+    - openai_api
+    - google_sheets
+    - slack
+  timeout: 10
+  interval: 30

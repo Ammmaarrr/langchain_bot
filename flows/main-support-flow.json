@@ -1,0 +1,326 @@
+{
+  "data": {
+    "nodes": [
+      {
+        "id": "ChatInput-1",
+        "type": "ChatInput",
+        "position": { "x": 100, "y": 100 },
+        "data": {
+          "node": {
+            "base_classes": ["Message"],
+            "description": "Chat input component for user messages",
+            "display_name": "Chat Input",
+            "documentation": "",
+            "icon": "ChatInput",
+            "name": "ChatInput"
+          },
+          "type": "ChatInput",
+          "value": ""
+        }
+      },
+      {
+        "id": "Prompt-IntentClassification",
+        "type": "PromptTemplate",
+        "position": { "x": 300, "y": 100 },
+        "data": {
+          "node": {
+            "base_classes": ["StringPromptTemplate", "BasePromptTemplate"],
+            "description": "Intent classification prompt for routing customer inquiries",
+            "display_name": "Intent Classification",
+            "name": "PromptTemplate"
+          },
+          "type": "PromptTemplate",
+          "template": "You are TechCorp Solutions' intelligent customer support assistant. Analyze the customer's message and classify their intent.\n\nCustomer Message: {customer_message}\n\nClassify the intent as one of:\n1. GENERAL_INQUIRY - Questions about products, services, or company\n2. LEAD_QUALIFICATION - Shows interest in purchasing or demos\n3. TECHNICAL_SUPPORT - Technical issues or troubleshooting\n4. ORDER_STATUS - Questions about existing orders\n5. BILLING_INQUIRY - Payment or billing related questions\n6. COMPLAINT - Customer complaints or negative feedback\n\nRespond with ONLY the intent category and a confidence score (0-100).\nFormat: INTENT_CATEGORY:CONFIDENCE_SCORE\n\nExample: LEAD_QUALIFICATION:85",
+          "input_variables": ["customer_message"]
+        }
+      },
+      {
+        "id": "OpenAI-IntentClassifier",
+        "type": "OpenAI",
+        "position": { "x": 500, "y": 100 },
+        "data": {
+          "node": {
+            "base_classes": ["BaseLanguageModel"],
+            "description": "OpenAI LLM for intent classification",
+            "display_name": "Intent Classifier",
+            "name": "OpenAI"
+          },
+          "type": "OpenAI",
+          "model_name": "gpt-4o-mini",
+          "temperature": 0.1,
+          "max_tokens": 50
+        }
+      },
+      {
+        "id": "ConditionalRouter-1",
+        "type": "ConditionalRouter",
+        "position": { "x": 700, "y": 100 },
+        "data": {
+          "node": {
+            "base_classes": ["Conditional"],
+            "description": "Routes based on intent classification",
+            "display_name": "Intent Router",
+            "name": "ConditionalRouter"
+          },
+          "type": "ConditionalRouter",
+          "conditions": [
+            {
+              "condition": "LEAD_QUALIFICATION in {input}",
+              "route": "lead-qualification"
+            },
+            {
+              "condition": "TECHNICAL_SUPPORT in {input}",
+              "route": "technical-support"
+            },
+            {
+              "condition": "GENERAL_INQUIRY in {input}",
+              "route": "general-inquiry"
+            },
+            {
+              "condition": "ORDER_STATUS in {input}",
+              "route": "order-status"
+            },
+            {
+              "condition": "BILLING_INQUIRY in {input}",
+              "route": "billing-inquiry"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Prompt-LeadQualification",
+        "type": "PromptTemplate",
+        "position": { "x": 900, "y": 50 },
+        "data": {
+          "node": {
+            "base_classes": ["StringPromptTemplate", "BasePromptTemplate"],
+            "description": "Lead qualification conversation flow",
+            "display_name": "Lead Qualification",
+            "name": "PromptTemplate"
+          },
+          "type": "PromptTemplate",
+          "template": "You are Sarah, TechCorp Solutions' friendly lead qualification specialist. Your goal is to qualify this potential customer while providing excellent service.\n\nCustomer Message: {customer_message}\nConversation History: {conversation_history}\n\nGuidelines:\n1. Ask qualifying questions naturally in conversation\n2. Determine: Company size, budget range, timeline, specific needs\n3. Score the lead (0-100) based on qualification criteria\n4. Be helpful and consultative, not pushy\n5. Offer relevant solutions based on their needs\n\nQualification Criteria:\n- Budget >$10k: +30 points\n- Timeline <6 months: +25 points  \n- Decision maker: +20 points\n- Company >100 employees: +15 points\n- Specific use case: +10 points\n\nAlways end with a helpful response and next steps. If lead score >70, offer to schedule a demo.\n\nRespond in this format:\nRESPONSE: [Your conversational response]\nLEAD_SCORE: [0-100]\nNEXT_ACTION: [Suggested next step]",
+          "input_variables": ["customer_message", "conversation_history"]
+        }
+      },
+      {
+        "id": "Prompt-TechnicalSupport",
+        "type": "PromptTemplate",
+        "position": { "x": 900, "y": 150 },
+        "data": {
+          "node": {
+            "base_classes": ["StringPromptTemplate", "BasePromptTemplate"],
+            "description": "Technical support assistance flow",
+            "display_name": "Technical Support",
+            "name": "PromptTemplate"
+          },
+          "type": "PromptTemplate",
+          "template": "You are Alex, TechCorp Solutions' technical support specialist. Help the customer resolve their technical issue.\n\nCustomer Message: {customer_message}\nConversation History: {conversation_history}\n\nTechnical Knowledge Base:\n- Product authentication issues: Check API keys and permissions\n- Integration problems: Verify webhook URLs and data formats\n- Performance issues: Check rate limits and optimize queries\n- Data sync errors: Validate data mapping and field types\n\nTroubleshooting Process:\n1. Understand the specific issue\n2. Gather relevant details (error messages, steps taken)\n3. Provide step-by-step solutions\n4. Offer additional resources if needed\n5. Escalate to senior technical team if complex\n\nIf you cannot resolve the issue, create a support ticket and provide ticket number.\n\nRespond in this format:\nRESPONSE: [Your helpful technical response]\nISSUE_SEVERITY: [LOW/MEDIUM/HIGH/CRITICAL]\nEscalation_NEEDED: [YES/NO]",
+          "input_variables": ["customer_message", "conversation_history"]
+        }
+      },
+      {
+        "id": "Prompt-GeneralInquiry",
+        "type": "PromptTemplate",
+        "position": { "x": 900, "y": 250 },
+        "data": {
+          "node": {
+            "base_classes": ["StringPromptTemplate", "BasePromptTemplate"],
+            "description": "General customer inquiry handler",
+            "display_name": "General Inquiry",
+            "name": "PromptTemplate"
+          },
+          "type": "PromptTemplate",
+          "template": "You are Jordan, TechCorp Solutions' customer service representative. Provide helpful information about our company, products, and services.\n\nCustomer Message: {customer_message}\nConversation History: {conversation_history}\n\nCompany Information:\n- TechCorp Solutions: Leading provider of business automation software\n- Products: CRM Platform, Marketing Automation, Data Analytics Suite\n- Industries: Technology, Healthcare, Finance, Retail\n- Founded: 2015, 500+ employees, serving 10,000+ customers globally\n\nProduct Information:\n- CRM Platform: $99-499/month, full customer lifecycle management\n- Marketing Automation: $199-999/month, multi-channel campaigns\n- Analytics Suite: $299-1299/month, real-time business insights\n- All products include 24/7 support and training\n\nAlways be helpful, professional, and look for opportunities to connect them with sales if they show interest.\n\nRespond in this format:\nRESPONSE: [Your informative response]\nINTEREST_LEVEL: [LOW/MEDIUM/HIGH]\nSALES_REFERRAL: [YES/NO]",
+          "input_variables": ["customer_message", "conversation_history"]
+        }
+      },
+      {
+        "id": "OpenAI-ResponseGenerator",
+        "type": "OpenAI",
+        "position": { "x": 1100, "y": 150 },
+        "data": {
+          "node": {
+            "base_classes": ["BaseLanguageModel"],
+            "description": "Main response generator",
+            "display_name": "Response Generator",
+            "name": "OpenAI"
+          },
+          "type": "OpenAI",
+          "model_name": "gpt-4o-mini",
+          "temperature": 0.7,
+          "max_tokens": 500
+        }
+      },
+      {
+        "id": "Memory-ConversationBuffer",
+        "type": "ConversationBufferMemory",
+        "position": { "x": 300, "y": 300 },
+        "data": {
+          "node": {
+            "base_classes": ["BaseChatMemory"],
+            "description": "Stores conversation history",
+            "display_name": "Conversation Memory",
+            "name": "ConversationBufferMemory"
+          },
+          "type": "ConversationBufferMemory",
+          "k": 10
+        }
+      },
+      {
+        "id": "GoogleSheets-Logger",
+        "type": "CustomComponent",
+        "position": { "x": 1300, "y": 100 },
+        "data": {
+          "node": {
+            "base_classes": ["CustomComponent"],
+            "description": "Logs interactions to Google Sheets CRM",
+            "display_name": "CRM Logger",
+            "name": "GoogleSheetsLogger"
+          },
+          "type": "CustomComponent",
+          "code": "# Google Sheets integration for CRM logging"
+        }
+      },
+      {
+        "id": "Slack-Notifier",
+        "type": "CustomComponent",
+        "position": { "x": 1300, "y": 200 },
+        "data": {
+          "node": {
+            "base_classes": ["CustomComponent"],
+            "description": "Sends notifications to Slack for high-priority leads",
+            "display_name": "Slack Notifier",
+            "name": "SlackNotifier"
+          },
+          "type": "CustomComponent",
+          "code": "# Slack notification for urgent leads"
+        }
+      },
+      {
+        "id": "ChatOutput-1",
+        "type": "ChatOutput",
+        "position": { "x": 1500, "y": 150 },
+        "data": {
+          "node": {
+            "base_classes": ["Message"],
+            "description": "Chat output component for bot responses",
+            "display_name": "Chat Output",
+            "name": "ChatOutput"
+          },
+          "type": "ChatOutput"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "ChatInput-1",
+        "target": "Prompt-IntentClassification",
+        "sourceHandle": "output",
+        "targetHandle": "customer_message"
+      },
+      {
+        "id": "e2",
+        "source": "Prompt-IntentClassification",
+        "target": "OpenAI-IntentClassifier",
+        "sourceHandle": "output",
+        "targetHandle": "input"
+      },
+      {
+        "id": "e3",
+        "source": "OpenAI-IntentClassifier",
+        "target": "ConditionalRouter-1",
+        "sourceHandle": "output",
+        "targetHandle": "input"
+      },
+      {
+        "id": "e4",
+        "source": "ConditionalRouter-1",
+        "target": "Prompt-LeadQualification",
+        "sourceHandle": "lead-qualification",
+        "targetHandle": "customer_message"
+      },
+      {
+        "id": "e5",
+        "source": "ConditionalRouter-1",
+        "target": "Prompt-TechnicalSupport",
+        "sourceHandle": "technical-support",
+        "targetHandle": "customer_message"
+      },
+      {
+        "id": "e6",
+        "source": "ConditionalRouter-1",
+        "target": "Prompt-GeneralInquiry",
+        "sourceHandle": "general-inquiry",
+        "targetHandle": "customer_message"
+      },
+      {
+        "id": "e7",
+        "source": "Prompt-LeadQualification",
+        "target": "OpenAI-ResponseGenerator",
+        "sourceHandle": "output",
+        "targetHandle": "input"
+      },
+      {
+        "id": "e8",
+        "source": "Prompt-TechnicalSupport",
+        "target": "OpenAI-ResponseGenerator",
+        "sourceHandle": "output",
+        "targetHandle": "input"
+      },
+      {
+        "id": "e9",
+        "source": "Prompt-GeneralInquiry",
+        "target": "OpenAI-ResponseGenerator",
+        "sourceHandle": "output",
+        "targetHandle": "input"
+      },
+      {
+        "id": "e10",
+        "source": "Memory-ConversationBuffer",
+        "target": "Prompt-LeadQualification",
+        "sourceHandle": "output",
+        "targetHandle": "conversation_history"
+      },
+      {
+        "id": "e11",
+        "source": "Memory-ConversationBuffer",
+        "target": "Prompt-TechnicalSupport",
+        "sourceHandle": "output",
+        "targetHandle": "conversation_history"
+      },
+      {
+        "id": "e12",
+        "source": "Memory-ConversationBuffer",
+        "target": "Prompt-GeneralInquiry",
+        "sourceHandle": "output",
+        "targetHandle": "conversation_history"
+      },
+      {
+        "id": "e13",
+        "source": "OpenAI-ResponseGenerator",
+        "target": "GoogleSheets-Logger",
+        "sourceHandle": "output",
+        "targetHandle": "input"
+      },
+      {
+        "id": "e14",
+        "source": "OpenAI-ResponseGenerator",
+        "target": "Slack-Notifier",
+        "sourceHandle": "output",
+        "targetHandle": "input"
+      },
+      {
+        "id": "e15",
+        "source": "OpenAI-ResponseGenerator",
+        "target": "ChatOutput-1",
+        "sourceHandle": "output",
+        "targetHandle": "input"
+      }
+    ]
+  },
+  "description": "TechCorp Solutions Customer Support & Lead Qualification Bot - Built with Langflow",
+  "name": "Customer Support Bot",
+  "last_tested": "2025-06-29T16:43:00Z"
+}

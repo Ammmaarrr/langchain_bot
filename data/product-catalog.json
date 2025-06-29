@@ -1,0 +1,188 @@
+{
+  "products": [
+    {
+      "id": "crm_platform",
+      "name": "CRM Platform",
+      "description": "Complete customer relationship management solution for businesses of all sizes",
+      "pricing": {
+        "starter": {
+          "price": 99,
+          "currency": "USD",
+          "billing": "monthly",
+          "features": [
+            "Contact management for up to 1,000 contacts",
+            "Basic sales pipeline",
+            "Email integration",
+            "Mobile app access",
+            "Standard support"
+          ]
+        },
+        "professional": {
+          "price": 199,
+          "currency": "USD",
+          "billing": "monthly",
+          "features": [
+            "Contact management for up to 10,000 contacts",
+            "Advanced sales pipeline with automation",
+            "Email & calendar integration",
+            "Custom fields and workflows",
+            "Priority support",
+            "Basic reporting"
+          ]
+        },
+        "enterprise": {
+          "price": 499,
+          "currency": "USD",
+          "billing": "monthly",
+          "features": [
+            "Unlimited contacts",
+            "Full sales automation",
+            "Advanced integrations",
+            "Custom dashboards",
+            "Advanced analytics",
+            "Dedicated account manager",
+            "API access"
+          ]
+        }
+      },
+      "key_features": [
+        "360-degree customer view",
+        "Sales pipeline management",
+        "Lead scoring and qualification",
+        "Email marketing integration",
+        "Mobile accessibility",
+        "Customizable dashboards"
+      ],
+      "industries": ["Technology", "Healthcare", "Finance", "Retail", "Manufacturing"]
+    },
+    {
+      "id": "marketing_automation",
+      "name": "Marketing Automation",
+      "description": "Multi-channel marketing automation platform for lead nurturing and customer engagement",
+      "pricing": {
+        "essentials": {
+          "price": 199,
+          "currency": "USD",
+          "billing": "monthly",
+          "features": [
+            "Email campaigns for up to 2,500 contacts",
+            "Basic automation workflows",
+            "Landing page builder",
+            "Social media scheduling",
+            "Basic analytics"
+          ]
+        },
+        "professional": {
+          "price": 499,
+          "currency": "USD",
+          "billing": "monthly",
+          "features": [
+            "Email campaigns for up to 15,000 contacts",
+            "Advanced automation workflows",
+            "A/B testing",
+            "Lead scoring",
+            "CRM integration",
+            "Advanced analytics"
+          ]
+        },
+        "enterprise": {
+          "price": 999,
+          "currency": "USD",
+          "billing": "monthly",
+          "features": [
+            "Unlimited contacts",
+            "Multi-channel campaigns",
+            "Predictive analytics",
+            "Advanced personalization",
+            "Custom integrations",
+            "Dedicated support"
+          ]
+        }
+      },
+      "key_features": [
+        "Multi-channel campaign management",
+        "Behavioral trigger automation",
+        "Lead nurturing workflows",
+        "A/B testing capabilities",
+        "Real-time analytics",
+        "Integration with major platforms"
+      ],
+      "industries": ["E-commerce", "SaaS", "Education", "Healthcare", "Financial Services"]
+    },
+    {
+      "id": "analytics_suite",
+      "name": "Analytics Suite",
+      "description": "Real-time business intelligence and analytics platform for data-driven decision making",
+      "pricing": {
+        "standard": {
+          "price": 299,
+          "currency": "USD",
+          "billing": "monthly",
+          "features": [
+            "Up to 5 data sources",
+            "Pre-built dashboards",
+            "Basic reporting",
+            "Data visualization",
+            "Monthly data refresh"
+          ]
+        },
+        "professional": {
+          "price": 699,
+          "currency": "USD",
+          "billing": "monthly",
+          "features": [
+            "Up to 25 data sources",
+            "Custom dashboards",
+            "Advanced analytics",
+            "Real-time data refresh",
+            "Predictive modeling",
+            "API access"
+          ]
+        },
+        "enterprise": {
+          "price": 1299,
+          "currency": "USD",
+          "billing": "monthly",
+          "features": [
+            "Unlimited data sources",
+            "White-label solutions",
+            "Advanced machine learning",
+            "Custom integrations",
+            "Dedicated infrastructure",
+            "24/7 premium support"
+          ]
+        }
+      },
+      "key_features": [
+        "Real-time data processing",
+        "Interactive dashboards",
+        "Predictive analytics",
+        "Custom report builder",
+        "Data visualization tools",
+        "Multi-source data integration"
+      ],
+      "industries": ["Retail", "Manufacturing", "Finance", "Healthcare", "Technology"]
+    }
+  ],
+  "add_ons": [
+    {
+      "id": "premium_support",
+      "name": "Premium Support",
+      "price": 99,
+      "description": "24/7 priority support with dedicated account manager"
+    },
+    {
+      "id": "custom_integration",
+      "name": "Custom Integration",
+      "price": 299,
+      "description": "One-time setup for custom API integrations"
+    },
+    {
+      "id": "training_package",
+      "name": "Training Package",
+      "price": 199,
+      "description": "Comprehensive training for up to 10 users"
+    }
+  ],
+  "last_updated": "2025-06-29T16:55:00Z"
+}

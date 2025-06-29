@@ -1,0 +1,220 @@
+{
+  "lead_scoring_rules": {
+    "budget_criteria": [
+      {
+        "range": "$50,000+",
+        "score": 30,
+        "description": "High budget range indicates serious purchasing intent"
+      },
+      {
+        "range": "$25,000-$49,999",
+        "score": 25,
+        "description": "Medium-high budget range"
+      },
+      {
+        "range": "$10,000-$24,999",
+        "score": 20,
+        "description": "Medium budget range"
+      },
+      {
+        "range": "$5,000-$9,999",
+        "score": 10,
+        "description": "Lower budget range"
+      },
+      {
+        "range": "Under $5,000",
+        "score": 5,
+        "description": "Minimal budget"
+      }
+    ],
+    "timeline_criteria": [
+      {
+        "timeline": "Immediate (< 1 month)",
+        "score": 25,
+        "description": "Urgent need indicates high purchase likelihood"
+      },
+      {
+        "timeline": "1-3 months",
+        "score": 20,
+        "description": "Short-term timeline"
+      },
+      {
+        "timeline": "3-6 months",
+        "score": 15,
+        "description": "Medium-term timeline"
+      },
+      {
+        "timeline": "6-12 months",
+        "score": 10,
+        "description": "Longer timeline"
+      },
+      {
+        "timeline": "12+ months",
+        "score": 5,
+        "description": "Very long timeline"
+      }
+    ],
+    "authority_criteria": [
+      {
+        "role": "CEO/Owner",
+        "score": 20,
+        "description": "Ultimate decision maker"
+      },
+      {
+        "role": "VP/Director",
+        "score": 18,
+        "description": "Senior decision maker"
+      },
+      {
+        "role": "Manager",
+        "score": 15,
+        "description": "Mid-level decision influence"
+      },
+      {
+        "role": "Individual Contributor",
+        "score": 10,
+        "description": "Influencer but not decision maker"
+      },
+      {
+        "role": "Other",
+        "score": 5,
+        "description": "Limited decision making authority"
+      }
+    ],
+    "company_size_criteria": [
+      {
+        "size": "1000+ employees",
+        "score": 15,
+        "description": "Enterprise customer with large budget potential"
+      },
+      {
+        "size": "500-999 employees",
+        "score": 12,
+        "description": "Large company"
+      },
+      {
+        "size": "100-499 employees",
+        "score": 10,
+        "description": "Medium company"
+      },
+      {
+        "size": "50-99 employees",
+        "score": 8,
+        "description": "Small-medium company"
+      },
+      {
+        "size": "10-49 employees",
+        "score": 6,
+        "description": "Small company"
+      },
+      {
+        "size": "1-9 employees",
+        "score": 3,
+        "description": "Very small company"
+      }
+    ],
+    "use_case_criteria": [
+      {
+        "use_case": "Complete CRM overhaul",
+        "score": 10,
+        "description": "Major implementation project"
+      },
+      {
+        "use_case": "Marketing automation setup",
+        "score": 8,
+        "description": "Significant automation needs"
+      },
+      {
+        "use_case": "Data analytics implementation",
+        "score": 8,
+        "description": "Business intelligence needs"
+      },
+      {
+        "use_case": "Integration with existing systems",
+        "score": 6,
+        "description": "Technical integration project"
+      },
+      {
+        "use_case": "Team training and support",
+        "score": 4,
+        "description": "Support and training needs"
+      },
+      {
+        "use_case": "General inquiry",
+        "score": 2,
+        "description": "Basic information request"
+      }
+    ],
+    "engagement_criteria": [
+      {
+        "behavior": "Requested demo",
+        "score": 15,
+        "description": "High engagement - wants to see product"
+      },
+      {
+        "behavior": "Asked about pricing",
+        "score": 12,
+        "description": "Price-conscious - serious buyer"
+      },
+      {
+        "behavior": "Mentioned competitor comparison",
+        "score": 10,
+        "description": "Actively evaluating solutions"
+      },
+      {
+        "behavior": "Shared detailed requirements",
+        "score": 8,
+        "description": "Providing specific needs information"
+      },
+      {
+        "behavior": "Asked about implementation",
+        "score": 6,
+        "description": "Considering implementation logistics"
+      },
+      {
+        "behavior": "Basic information request",
+        "score": 3,
+        "description": "Early stage inquiry"
+      }
+    ]
+  },
+  "scoring_thresholds": {
+    "hot_lead": 85,
+    "warm_lead": 70,
+    "cold_lead": 50,
+    "unqualified": 30
+  },
+  "priority_mapping": {
+    "HIGH": "hot_lead",
+    "MEDIUM": "warm_lead",
+    "LOW": "cold_lead",
+    "UNQUALIFIED": "unqualified"
+  },
+  "routing_rules": {
+    "hot_lead": {
+      "assign_to": "Senior Sales Rep",
+      "notify_slack": true,
+      "response_time": "Within 1 hour",
+      "follow_up": "Same day"
+    },
+    "warm_lead": {
+      "assign_to": "Sales Rep",
+      "notify_slack": true,
+      "response_time": "Within 4 hours",
+      "follow_up": "Within 24 hours"
+    },
+    "cold_lead": {
+      "assign_to": "Inside Sales",
+      "notify_slack": false,
+      "response_time": "Within 24 hours",
+      "follow_up": "Within 3 days"
+    },
+    "unqualified": {
+      "assign_to": "Marketing Team",
+      "notify_slack": false,
+      "response_time": "Auto-response",
+      "follow_up": "Nurture campaign"
+    }
+  },
+  "last_updated": "2025-06-29T16:55:00Z"
+}
