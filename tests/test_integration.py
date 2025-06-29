@@ -2,20 +2,30 @@
 Integration tests for API components of the chatbot solution.
 """
 
-import pytest
+import asyncio
 import os
-from unittest.mock import patch
+import pytest
+from unittest.mock import patch, MagicMock, Mock
 from integrations.google_sheets_api import GoogleSheetsIntegration
 from integrations.slack_notifications import SlackNotifier
 
 # Ensure test data is loaded properly
 @pytest.fixture(scope="module")
+@patch('google.oauth2.service_account.Credentials.from_service_account_file')
 @patch('googleapiclient.discovery.build')
-def google_sheets_integration(mock_build):
+def google_sheets_integration(mock_build, mock_creds):
     """Set up Google Sheets integration for testing."""
     credentials_file = os.getenv('GOOGLE_SHEETS_CREDENTIALS_FILE', 'test-credentials.json')
     spreadsheet_id = os.getenv('GOOGLE_SHEETS_SPREADSHEET_ID', 'test-spreadsheet-id')
 
+    # Mock the credentials with proper attributes and method chains
+    mock_credentials = Mock()
+    mock_credentials.universe_domain = 'googleapis.com'
+    mock_credentials.create_scoped.return_value = mock_credentials
+    mock_credentials.authorize.return_value = mock_credentials
+    mock_credentials.credentials = mock_credentials
+    mock_creds.return_value = mock_credentials
+    
     # Mock the API Client creation
     mock_build.return_value.spreadsheets.return_value.values.return_value.append.return_value.execute.return_value = {
         'updates': {'updatedCells': 1}
@@ -26,14 +36,16 @@ def google_sheets_integration(mock_build):
 
 
 @pytest.fixture(scope="module")
-@patch('slack_sdk.WebClient')
-def slack_notifier(mock_web_client):
+@patch('integrations.slack_notifications.WebClient')
+def slack_notifier(mock_web_client_class):
     """Set up Slack notifier for testing."""
     bot_token = os.getenv('SLACK_BOT_TOKEN', 'test-bot-token')
     webhook_url = os.getenv('SLACK_WEBHOOK_URL', 'https://hooks.slack.com/services/test')
 
-    # Mock the Slack client
-    mock_web_client.return_value.chat_postMessage.return_value = {'ts': '12345.6789'}
+    # Create a mock WebClient instance
+    mock_client_instance = Mock()
+    mock_client_instance.chat_postMessage.return_value = {'ts': '12345.6789', 'ok': True}
+    mock_web_client_class.return_value = mock_client_instance
 
     # Return notifier instance
     return SlackNotifier(bot_token, webhook_url)

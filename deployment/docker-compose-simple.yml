@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  langflow:
+    image: langflowai/langflow:latest
+    container_name: techcorp-chatbot
+    ports:
+      - "7860:7860"
+    environment:
+      - LANGFLOW_HOST=0.0.0.0
+      - LANGFLOW_PORT=7860
+      - LANGFLOW_AUTO_LOGIN=true
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ../flows:/app/flows
+      - ../integrations:/app/integrations
+      - ../data:/app/data
+    restart: unless-stopped
+    env_file:
+      - ../.env
+
+  redis:
+    image: redis:7-alpine
+    container_name: techcorp-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  default:
+    name: techcorp-chatbot-network
+    driver: bridge

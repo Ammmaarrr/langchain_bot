@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCorp Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .chat-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        .chat-log {
+            min-height: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        .chat-log div {
+            margin-bottom: 10px;
+        }
+        .chat-log .user {
+            color: blue;
+            text-align: right;
+        }
+        .chat-log .bot {
+            color: green;
+        }
+        .input-area {
+            display: flex;
+        }
+        .input-area input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .input-area button {
+            padding: 10px 15px;
+            margin-left: 5px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h1>Welcome to TechCorp Chatbot!</h1>
+        <div class="chat-log" id="chat-log"></div>
+        <div class="input-area">
+            <input type="text" id="chat-input" placeholder="Type a message">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function appendMessage(sender, message) {
+            const chatLog = document.getElementById('chat-log');
+            const messageElem = document.createElement('div');
+            messageElem.classList.add(sender);
+            messageElem.textContent = `${sender}: ${message}`;
+            chatLog.appendChild(messageElem);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        function sendMessage() {
+            const inputElem = document.getElementById('chat-input');
+            const message = inputElem.value;
+            if (message.trim()) {
+                appendMessage('user', message);
+                inputElem.value = '';
+
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: message
+                    })
+                }).then(response => response.json())
+                .then(data => {
+                    appendMessage('bot', data.response);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

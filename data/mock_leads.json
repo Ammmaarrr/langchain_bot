@@ -1,0 +1,14 @@
+[
+  {
+    "timestamp": "2025-06-30T00:05:51.460919",
+    "name": "John Doe",
+    "email": "john@enterprise-corp.com",
+    "company": "Enterprise Corp",
+    "inquiry_type": "enterprise",
+    "lead_score": 65,
+    "conversation_log": [
+      "Hi, I'm interested in your enterprise software solutions",
+      "Hello! I'm your TechCorp support assistant. How can I help you today?"
+    ]
+  }
+]
