@@ -52,6 +52,16 @@ class MockOpenAI:
                 "Our API-first approach makes integration seamless with your existing tech stack.",
                 "Integration typically takes 2-4 weeks depending on complexity and can be done with minimal downtime."
             ],
+            "company_info": [
+                "TechCorp is a leading provider of enterprise AI solutions, founded in 2020. We specialize in business automation, cloud services, and digital transformation.",
+                "We're TechCorp - your trusted partner for enterprise technology solutions. We serve Fortune 500 companies with cutting-edge AI and cloud infrastructure.",
+                "TechCorp offers comprehensive enterprise solutions including CRM systems, data analytics, AI automation, and cloud migration services to help businesses scale efficiently."
+            ],
+            "about": [
+                "About TechCorp: We're innovators in enterprise technology, helping businesses transform through AI-powered solutions and scalable cloud infrastructure.",
+                "TechCorp was founded with a mission to simplify enterprise technology. We provide end-to-end solutions from consultation to implementation and support.",
+                "Our company focuses on delivering measurable business value through advanced technology solutions, serving clients across healthcare, finance, and manufacturing sectors."
+            ],
             "goodbye": [
                 "Thank you for contacting TechCorp! Have a great day and feel free to reach out anytime.",
                 "It was great helping you today! Don't hesitate to contact us if you need anything else.",
@@ -101,6 +111,14 @@ class MockOpenAI:
         # Integration questions
         elif any(word in user_input_lower for word in ["integration", "integrate", "api", "connect"]):
             return self._get_random_response("integration")
+        
+        # Company information requests
+        elif any(phrase in user_input_lower for phrase in ["about your company", "company info", "info about", "tell me about", "what is techcorp", "who are you", "about techcorp"]):
+            return self._get_random_response("company_info")
+        
+        # About requests
+        elif any(word in user_input_lower for word in ["about", "company", "who", "what", "information", "info"]):
+            return self._get_random_response("about")
         
         # Default response
         else:
