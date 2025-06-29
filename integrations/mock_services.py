@@ -5,6 +5,7 @@ Mock services for local development without external API dependencies
 
 import json
 import logging
+import re
 from datetime import datetime
 from typing import Dict, List, Any
 
@@ -16,6 +17,7 @@ class MockOpenAI:
     """Mock OpenAI service for local testing"""
     
     def __init__(self):
+        import re
         self.responses = {
             "greeting": [
                 "Hello! I'm your TechCorp support assistant. How can I help you today?",
@@ -80,7 +82,25 @@ class MockOpenAI:
         user_input_lower = user_input.lower()
         self.conversation_count += 1
         
-        # Greeting patterns
+        # Comprehensive prompt handling
+        pattern_response_mapping = [
+            (r"hello|hi|hey|good morning|good afternoon|what's up", "greeting"),
+            (r"bye|goodbye|thanks|thank you|that's all|see you", "goodbye"),
+            (r"(product|service|offerings|solutions|sell|provide|manufacture)", "product_inquiry"),
+            (r"(support|help|problem|issue|trouble|error|assist|call|contact)", "support"),
+            (r"(price|cost|pricing|quote|budget|charge|expense)", "pricing"),
+            (r"(demo|demonstration|show me|trial|see)", "demo"),
+            (r"(enterprise|corporation|business|company|firm|organization)", "enterprise"),
+            (r"(integration|integrate|api|connect|sync|support)", "integration"),
+            (r"(company|about|who are you|tell me|background|history|info)", "company_info"),
+            (r"(about|details|information|data|insight|facts)", "about")
+        ]
+
+        for pattern, response_category in pattern_response_mapping:
+            if re.search(pattern, user_input_lower):
+                return self._get_random_response(response_category)
+
+        # Category matching
         if any(word in user_input_lower for word in ["hello", "hi", "hey", "good morning", "good afternoon"]):
             return self._get_random_response("greeting")
         
