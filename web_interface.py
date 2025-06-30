@@ -8,7 +8,8 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), 'integrations'))
 
 from flask import Flask, render_template, request, jsonify
-from mock_services import process_conversation, mock_sheets, mock_slack
+from mock_services import enhanced_process_conversation, mock_sheets, mock_slack
+from conversation_history import conversation_manager
 import json
 
 app = Flask(__name__)
@@ -49,8 +50,8 @@ def chat():
             'user_data': session['user_data']
         }
     else:
-        # Process conversation with mock services
-        result = process_conversation(user_input, session['user_data'])
+        # Process conversation with enhanced mock services that track history
+        result = enhanced_process_conversation(user_input, session['user_data'], session_id)
     
     # Add to conversation history
     session['messages'].append({
@@ -72,6 +73,51 @@ def view_notifications():
     """View notifications"""
     notifications = mock_slack.get_notifications()
     return jsonify(notifications)
+
+@app.route('/conversation-history')
+def conversation_history():
+    """Get recent conversation history"""
+    limit = request.args.get('limit', 20, type=int)
+    session_id = request.args.get('session_id')
+    
+    conversations = conversation_manager.get_recent_conversations(limit, session_id)
+    return jsonify({
+        'conversations': conversations,
+        'stats': conversation_manager.get_conversation_stats()
+    })
+
+@app.route('/feedback', methods=['POST'])
+def add_feedback():
+    """Add feedback for a conversation"""
+    data = request.json
+    conversation_id = data.get('conversation_id')
+    feedback = data.get('feedback')
+    quality_rating = data.get('quality_rating', 3)
+    suggested_response = data.get('suggested_response')
+    
+    conversation_manager.add_feedback(
+        conversation_id, feedback, quality_rating, suggested_response
+    )
+    
+    return jsonify({'status': 'success', 'message': 'Feedback added successfully'})
+
+@app.route('/learning-data')
+def learning_data():
+    """Export learning data for analysis"""
+    return jsonify(conversation_manager.export_learning_data())
+
+@app.route('/suggest-response', methods=['POST'])
+def suggest_response():
+    """Get suggested improved response based on learning"""
+    data = request.json
+    user_input = data.get('user_input', '')
+    
+    suggested = conversation_manager.suggest_improved_response(user_input)
+    
+    return jsonify({
+        'suggested_response': suggested,
+        'has_suggestion': suggested is not None
+    })
 
 @app.route('/dashboard')
 def dashboard():

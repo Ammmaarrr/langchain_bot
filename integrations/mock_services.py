@@ -6,6 +6,7 @@ Mock services for local development without external API dependencies
 import json
 import logging
 import re
+import time
 from datetime import datetime
 from typing import Dict, List, Any
 
@@ -266,9 +267,30 @@ class LeadScorer:
         return min(score, 100)  # Cap at 100
 
 # Initialize services
+def enhanced_process_conversation(user_input: str, user_data: Dict[str, Any] = None, session_id: str = "default") -> Dict[str, Any]:
+    """Enhanced process conversation with history tracking"""
+    start_time = time.time()
+    result = process_conversation(user_input, user_data)
+    response_time = time.time() - start_time
+
+    # Track conversation in history
+    conversation_manager.add_conversation(
+        user_input=user_input,
+        bot_response=result['response'],
+        session_id=session_id,
+        user_data=user_data,
+        lead_score=result['lead_score'],
+        response_time=response_time
+    )
+
+    return result
+
 mock_openai = MockOpenAI()
 mock_sheets = MockGoogleSheets()
 mock_slack = MockSlack()
+
+# Import conversation history manager
+from conversation_history import conversation_manager
 lead_scorer = LeadScorer()
 
 def process_conversation(user_input: str, user_data: Dict[str, Any] = None) -> Dict[str, Any]:

@@ -1,0 +1,86 @@
+[
+  {
+    "conversation_id": "web_session_jz2qn471q_20250630_153957_125231",
+    "session_id": "web_session_jz2qn471q",
+    "timestamp": "2025-06-30T15:39:57.125231",
+    "user_input": "heloo",
+    "bot_response": "That's an interesting question. How can I best help you with your needs?",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.005518913269042969,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_jz2qn471q_20250630_154026_809120",
+    "session_id": "web_session_jz2qn471q",
+    "timestamp": "2025-06-30T15:40:26.809120",
+    "user_input": "what can you help me with",
+    "bot_response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.0,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_jz2qn471q_20250630_154034_135965",
+    "session_id": "web_session_jz2qn471q",
+    "timestamp": "2025-06-30T15:40:34.135965",
+    "user_input": "no you help me",
+    "bot_response": "I'm here to help with your technical concerns. Could you please describe the specific issue you're experiencing?",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.0,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_jz2qn471q_20250630_154053_384814",
+    "session_id": "web_session_jz2qn471q",
+    "timestamp": "2025-06-30T15:40:53.384814",
+    "user_input": "what specific concerns can you help me with",
+    "bot_response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.0,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_jz2qn471q_20250630_154111_090997",
+    "session_id": "web_session_jz2qn471q",
+    "timestamp": "2025-06-30T15:41:11.090997",
+    "user_input": "help me",
+    "bot_response": "I'm here to help with your technical concerns. Could you please describe the specific issue you're experiencing?",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.0,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_jz2qn471q_20250630_154151_720242",
+    "session_id": "web_session_jz2qn471q",
+    "timestamp": "2025-06-30T15:41:51.720242",
+    "user_input": "help me",
+    "bot_response": "Our technical support team is ready to assist. What problem are you encountering?",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.0,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_jz2qn471q_20250630_154215_560857",
+    "session_id": "web_session_jz2qn471q",
+    "timestamp": "2025-06-30T15:42:15.560857",
+    "user_input": "what technical support can you help me with",
+    "bot_response": "I'm here to help with your technical concerns. Could you please describe the specific issue you're experiencing?",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.0,
+    "feedback": null,
+    "response_quality": null
+  }
+]

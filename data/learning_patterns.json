@@ -1,0 +1,118 @@
+{
+  "heloo": {
+    "count": 1,
+    "responses": [
+      {
+        "response": "That's an interesting question. How can I best help you with your needs?",
+        "timestamp": "2025-06-30T15:39:57.131853"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "what": {
+    "count": 2,
+    "responses": [
+      {
+        "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+        "timestamp": "2025-06-30T15:40:26.811119"
+      },
+      {
+        "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+        "timestamp": "2025-06-30T15:40:53.388004"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "can": {
+    "count": 2,
+    "responses": [
+      {
+        "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+        "timestamp": "2025-06-30T15:40:26.812096"
+      },
+      {
+        "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+        "timestamp": "2025-06-30T15:40:53.388004"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "you": {
+    "count": 3,
+    "responses": [
+      {
+        "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+        "timestamp": "2025-06-30T15:40:26.812096"
+      },
+      {
+        "response": "I'm here to help with your technical concerns. Could you please describe the specific issue you're experiencing?",
+        "timestamp": "2025-06-30T15:40:34.142859"
+      },
+      {
+        "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+        "timestamp": "2025-06-30T15:40:53.388004"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "help": {
+    "count": 5,
+    "responses": [
+      {
+        "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+        "timestamp": "2025-06-30T15:40:26.812096"
+      },
+      {
+        "response": "I'm here to help with your technical concerns. Could you please describe the specific issue you're experiencing?",
+        "timestamp": "2025-06-30T15:40:34.142859"
+      },
+      {
+        "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+        "timestamp": "2025-06-30T15:40:53.388004"
+      },
+      {
+        "response": "I'm here to help with your technical concerns. Could you please describe the specific issue you're experiencing?",
+        "timestamp": "2025-06-30T15:41:11.096800"
+      },
+      {
+        "response": "Our technical support team is ready to assist. What problem are you encountering?",
+        "timestamp": "2025-06-30T15:41:51.723230"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "with": {
+    "count": 2,
+    "responses": [
+      {
+        "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+        "timestamp": "2025-06-30T15:40:26.812096"
+      },
+      {
+        "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+        "timestamp": "2025-06-30T15:40:53.388004"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "specific": {
+    "count": 1,
+    "responses": [
+      {
+        "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+        "timestamp": "2025-06-30T15:40:53.388004"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "concerns": {
+    "count": 1,
+    "responses": [
+      {
+        "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
+        "timestamp": "2025-06-30T15:40:53.388004"
+      }
+    ],
+    "success_rate": 0.0
+  }
+}
