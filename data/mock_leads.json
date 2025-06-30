@@ -10,5 +10,17 @@
       "Hi, I'm interested in your enterprise software solutions",
       "Hello! I'm your TechCorp support assistant. How can I help you today?"
     ]
+  },
+  {
+    "timestamp": "2025-06-30T16:43:39.096826",
+    "name": "John Doe",
+    "email": "john@enterprise-corp.com",
+    "company": "Enterprise Corp",
+    "inquiry_type": "enterprise",
+    "lead_score": 65,
+    "conversation_log": [
+      "Hi, I'm interested in your enterprise software solutions",
+      "\ud83d\ude80 Welcome to TechCorp! I'm your AI-powered business transformation assistant. Whether you're looking to revolutionize your operations, scale your infrastructure, or explore cutting-edge AI solutions, I'm here to guide you through our world-class enterprise offerings. What exciting challenge can we solve together today?"
+    ]
   }
 ]

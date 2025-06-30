@@ -10,7 +10,7 @@
     "success_rate": 0.0
   },
   "what": {
-    "count": 2,
+    "count": 5,
     "responses": [
       {
         "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
@@ -19,12 +19,24 @@
       {
         "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
         "timestamp": "2025-06-30T15:40:53.388004"
+      },
+      {
+        "response": "About TechCorp: We're innovators in enterprise technology, helping businesses transform through AI-powered solutions and scalable cloud infrastructure.",
+        "timestamp": "2025-06-30T16:15:35.704696"
+      },
+      {
+        "response": "For enterprise clients, we offer dedicated support, custom integrations, and scalable architecture.",
+        "timestamp": "2025-06-30T16:16:02.882973"
+      },
+      {
+        "response": "Our enterprise solutions are designed for large-scale operations with advanced security and compliance features.",
+        "timestamp": "2025-06-30T16:35:41.105057"
       }
     ],
     "success_rate": 0.0
   },
   "can": {
-    "count": 2,
+    "count": 3,
     "responses": [
       {
         "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
@@ -33,12 +45,16 @@
       {
         "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
         "timestamp": "2025-06-30T15:40:53.388004"
+      },
+      {
+        "response": "About TechCorp: We're innovators in enterprise technology, helping businesses transform through AI-powered solutions and scalable cloud infrastructure.",
+        "timestamp": "2025-06-30T16:15:35.704696"
       }
     ],
     "success_rate": 0.0
   },
   "you": {
-    "count": 3,
+    "count": 4,
     "responses": [
       {
         "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
@@ -51,6 +67,10 @@
       {
         "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
         "timestamp": "2025-06-30T15:40:53.388004"
+      },
+      {
+        "response": "About TechCorp: We're innovators in enterprise technology, helping businesses transform through AI-powered solutions and scalable cloud infrastructure.",
+        "timestamp": "2025-06-30T16:15:35.704696"
       }
     ],
     "success_rate": 0.0
@@ -111,6 +131,130 @@
       {
         "response": "I understand you need technical support. Let me connect you with our support team or help troubleshoot your issue.",
         "timestamp": "2025-06-30T15:40:53.388004"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "hello": {
+    "count": 2,
+    "responses": [
+      {
+        "response": "Greetings! I'm here to help you with any questions about our services.",
+        "timestamp": "2025-06-30T16:15:25.237978"
+      },
+      {
+        "response": "Hello! I'm your TechCorp support assistant. How can I help you today?",
+        "timestamp": "2025-06-30T16:35:31.650575"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "offer": {
+    "count": 1,
+    "responses": [
+      {
+        "response": "About TechCorp: We're innovators in enterprise technology, helping businesses transform through AI-powered solutions and scalable cloud infrastructure.",
+        "timestamp": "2025-06-30T16:15:35.704696"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "how": {
+    "count": 1,
+    "responses": [
+      {
+        "response": "That's an interesting question. How can I best help you with your needs?",
+        "timestamp": "2025-06-30T16:15:47.817295"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "your": {
+    "count": 3,
+    "responses": [
+      {
+        "response": "For enterprise clients, we offer dedicated support, custom integrations, and scalable architecture.",
+        "timestamp": "2025-06-30T16:16:02.882973"
+      },
+      {
+        "response": "For enterprise clients, we offer dedicated support, custom integrations, and scalable architecture.",
+        "timestamp": "2025-06-30T16:16:22.479918"
+      },
+      {
+        "response": "Our enterprise solutions are designed for large-scale operations with advanced security and compliance features.",
+        "timestamp": "2025-06-30T16:35:41.105057"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "company": {
+    "count": 3,
+    "responses": [
+      {
+        "response": "For enterprise clients, we offer dedicated support, custom integrations, and scalable architecture.",
+        "timestamp": "2025-06-30T16:16:02.882973"
+      },
+      {
+        "response": "For enterprise clients, we offer dedicated support, custom integrations, and scalable architecture.",
+        "timestamp": "2025-06-30T16:16:22.479918"
+      },
+      {
+        "response": "Our enterprise solutions are designed for large-scale operations with advanced security and compliance features.",
+        "timestamp": "2025-06-30T16:35:41.105057"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "about": {
+    "count": 2,
+    "responses": [
+      {
+        "response": "For enterprise clients, we offer dedicated support, custom integrations, and scalable architecture.",
+        "timestamp": "2025-06-30T16:16:02.882973"
+      },
+      {
+        "response": "Our enterprise solutions are designed for large-scale operations with advanced security and compliance features.",
+        "timestamp": "2025-06-30T16:35:41.105057"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "give": {
+    "count": 1,
+    "responses": [
+      {
+        "response": "For enterprise clients, we offer dedicated support, custom integrations, and scalable architecture.",
+        "timestamp": "2025-06-30T16:16:22.479918"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "detailed": {
+    "count": 1,
+    "responses": [
+      {
+        "response": "For enterprise clients, we offer dedicated support, custom integrations, and scalable architecture.",
+        "timestamp": "2025-06-30T16:16:22.479918"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "explaination": {
+    "count": 1,
+    "responses": [
+      {
+        "response": "For enterprise clients, we offer dedicated support, custom integrations, and scalable architecture.",
+        "timestamp": "2025-06-30T16:16:22.479918"
+      }
+    ],
+    "success_rate": 0.0
+  },
+  "all": {
+    "count": 1,
+    "responses": [
+      {
+        "response": "Our enterprise solutions are designed for large-scale operations with advanced security and compliance features.",
+        "timestamp": "2025-06-30T16:35:41.105057"
       }
     ],
     "success_rate": 0.0

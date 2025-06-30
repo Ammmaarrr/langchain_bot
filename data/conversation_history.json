@@ -82,5 +82,101 @@
     "response_time": 0.0,
     "feedback": null,
     "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_51dipqtvn_20250630_161525_233510",
+    "session_id": "web_session_51dipqtvn",
+    "timestamp": "2025-06-30T16:15:25.233510",
+    "user_input": "hello",
+    "bot_response": "Greetings! I'm here to help you with any questions about our services.",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.0,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_51dipqtvn_20250630_161535_696836",
+    "session_id": "web_session_51dipqtvn",
+    "timestamp": "2025-06-30T16:15:35.696836",
+    "user_input": "what can you offer",
+    "bot_response": "About TechCorp: We're innovators in enterprise technology, helping businesses transform through AI-powered solutions and scalable cloud infrastructure.",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.005288362503051758,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_51dipqtvn_20250630_161547_813414",
+    "session_id": "web_session_51dipqtvn",
+    "timestamp": "2025-06-30T16:15:47.813414",
+    "user_input": "how",
+    "bot_response": "That's an interesting question. How can I best help you with your needs?",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.0,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_51dipqtvn_20250630_161602_876786",
+    "session_id": "web_session_51dipqtvn",
+    "timestamp": "2025-06-30T16:16:02.876895",
+    "user_input": "what is your company about",
+    "bot_response": "For enterprise clients, we offer dedicated support, custom integrations, and scalable architecture.",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.0002334117889404297,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_51dipqtvn_20250630_161622_476259",
+    "session_id": "web_session_51dipqtvn",
+    "timestamp": "2025-06-30T16:16:22.476259",
+    "user_input": "give a detailed explaination of your company",
+    "bot_response": "For enterprise clients, we offer dedicated support, custom integrations, and scalable architecture.",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.0,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_0sn8msbih_20250630_163531_645572",
+    "session_id": "web_session_0sn8msbih",
+    "timestamp": "2025-06-30T16:35:31.645572",
+    "user_input": "hello",
+    "bot_response": "Hello! I'm your TechCorp support assistant. How can I help you today?",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.0,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_0sn8msbih_20250630_163541_093181",
+    "session_id": "web_session_0sn8msbih",
+    "timestamp": "2025-06-30T16:35:41.093286",
+    "user_input": "what your company is all about",
+    "bot_response": "Our enterprise solutions are designed for large-scale operations with advanced security and compliance features.",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.00011444091796875,
+    "feedback": null,
+    "response_quality": null
+  },
+  {
+    "conversation_id": "web_session_0sn8msbih_20250630_163558_994676",
+    "session_id": "web_session_0sn8msbih",
+    "timestamp": "2025-06-30T16:35:58.994676",
+    "user_input": "give me detailed explaination of your company",
+    "bot_response": "Our enterprise solutions are designed for large-scale operations with advanced security and compliance features.",
+    "user_data": {},
+    "lead_score": 0,
+    "response_time": 0.0,
+    "feedback": null,
+    "response_quality": null
   }
 ]
