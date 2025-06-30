@@ -1,0 +1,157 @@
+{
+  "vpn-001": {
+    "title": "VPN Connection Failures",
+    "category": "network",
+    "confidence": 0.95,
+    "version": "2.1.0",
+    "solution": [
+      "Check VPN service status: `sudo systemctl status openvpn`",
+      "Restart network manager: `sudo systemctl restart NetworkManager`",
+      "Verify config syntax: `openvpn --config /etc/openvpn/client.conf --verb 4`",
+      "Check firewall rules: `sudo iptables -L | grep vpn`"
+    ],
+    "verified": true,
+    "tags": [
+      "vpn",
+      "connection",
+      "network",
+      "openvpn"
+    ],
+    "troubleshooting": {
+      "error_patterns": [
+        "connection refused",
+        "authentication failed",
+        "timeout"
+      ],
+      "common_fixes": [
+        "credentials",
+        "firewall",
+        "dns"
+      ]
+    }
+  },
+  "docker-001": {
+    "title": "Docker Container Startup Issues",
+    "category": "containers",
+    "confidence": 0.92,
+    "version": "1.8.3",
+    "solution": [
+      "Check container logs: `docker logs --tail 50 container_name`",
+      "Inspect failed container: `docker inspect container_name | jq '.State'`",
+      "Verify image integrity: `docker image inspect image_name`",
+      "Clean up resources: `docker system prune -f`"
+    ],
+    "verified": true,
+    "tags": [
+      "docker",
+      "container",
+      "startup",
+      "troubleshooting"
+    ],
+    "troubleshooting": {
+      "error_patterns": [
+        "exit code",
+        "oomkilled",
+        "port already in use"
+      ],
+      "common_fixes": [
+        "memory",
+        "ports",
+        "permissions"
+      ]
+    }
+  },
+  "ssl-001": {
+    "title": "SSL Certificate Errors",
+    "category": "security",
+    "confidence": 0.94,
+    "version": "3.2.1",
+    "solution": [
+      "⚠️ Check certificate expiration: `openssl x509 -in cert.pem -noout -dates`",
+      "Verify certificate chain: `openssl verify -CAfile ca-bundle.crt cert.pem`",
+      "Test SSL handshake: `openssl s_client -connect domain.com:443 -servername domain.com`",
+      "Update certificate store: `sudo update-ca-certificates`"
+    ],
+    "verified": true,
+    "tags": [
+      "ssl",
+      "certificate",
+      "security",
+      "https",
+      "tls"
+    ],
+    "troubleshooting": {
+      "error_patterns": [
+        "certificate expired",
+        "self signed",
+        "unknown ca"
+      ],
+      "common_fixes": [
+        "renewal",
+        "chain",
+        "trust_store"
+      ]
+    }
+  },
+  "db-001": {
+    "title": "Database Connection Timeouts",
+    "category": "database",
+    "confidence": 0.91,
+    "version": "2.0.5",
+    "solution": [
+      "Check connection pool: `sudo -u postgres psql -c 'SELECT * FROM pg_stat_activity;'`",
+      "Restart database service: `sudo systemctl restart postgresql`",
+      "Verify port binding: `netstat -tlnp | grep :5432`",
+      "Monitor connection limits: `sudo -u postgres psql -c 'SHOW max_connections;'`"
+    ],
+    "verified": true,
+    "tags": [
+      "database",
+      "postgresql",
+      "timeout",
+      "connection"
+    ],
+    "troubleshooting": {
+      "error_patterns": [
+        "connection timed out",
+        "too many connections",
+        "authentication failed"
+      ],
+      "common_fixes": [
+        "pool_size",
+        "max_connections",
+        "authentication"
+      ]
+    }
+  },
+  "api-001": {
+    "title": "API Rate Limiting Issues",
+    "category": "api",
+    "confidence": 0.89,
+    "version": "1.5.2",
+    "solution": [
+      "Check rate limit headers: `curl -I -H 'Authorization: Bearer $TOKEN' https://api.techcorp.com/status`",
+      "Implement exponential backoff in client code",
+      "Monitor usage patterns: `techcorp-cli api usage --detailed`",
+      "Request rate limit increase: `techcorp-cli api request-limit-increase`"
+    ],
+    "verified": true,
+    "tags": [
+      "api",
+      "rate_limit",
+      "throttling",
+      "performance"
+    ],
+    "troubleshooting": {
+      "error_patterns": [
+        "429 too many requests",
+        "rate limit exceeded"
+      ],
+      "common_fixes": [
+        "backoff",
+        "caching",
+        "optimization"
+      ]
+    }
+  }
+}

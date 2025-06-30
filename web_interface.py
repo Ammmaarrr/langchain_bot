@@ -10,6 +10,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'integrations'))
 from flask import Flask, render_template, request, jsonify
 from mock_services import enhanced_process_conversation, mock_sheets, mock_slack
 from conversation_history import conversation_manager
+from techcorp_warp_ai import techcorp_ai
+from warpgpt_2_0 import warpgpt
+from datetime import datetime
 import json
 
 app = Flask(__name__)
@@ -50,8 +53,28 @@ def chat():
             'user_data': session['user_data']
         }
     else:
-        # Process conversation with enhanced mock services that track history
-        result = enhanced_process_conversation(user_input, session['user_data'], session_id)
+        # Use WarpGPT 2.0 for production-grade technical support
+        if data.get('use_warpgpt2', False):
+            ai_response = warpgpt.process_warp_request(user_input)
+            result = {
+                'response': ai_response,
+                'lead_score': 0,
+                'user_data': session['user_data'],
+                'warpgpt2': True,
+                'system_status': warpgpt.get_system_status()
+            }
+        # Use TechCorp Warp AI for technical support
+        elif data.get('use_warp_ai', False):
+            ai_response = techcorp_ai.process_message(user_input, data.get('product', 'system'))
+            result = {
+                'response': ai_response,
+                'lead_score': 0,
+                'user_data': session['user_data'],
+                'warp_ai': True
+            }
+        else:
+            # Process conversation with enhanced mock services that track history
+            result = enhanced_process_conversation(user_input, session['user_data'], session_id)
     
     # Add to conversation history
     session['messages'].append({
@@ -117,6 +140,83 @@ def suggest_response():
     return jsonify({
         'suggested_response': suggested,
         'has_suggestion': suggested is not None
+    })
+
+@app.route('/warp-ai/kb-search', methods=['POST'])
+def warp_kb_search():
+    """TechCorp Warp AI knowledge base search"""
+    data = request.json
+    query = data.get('query', '')
+    
+    results = techcorp_ai.execute_kb_command(query)
+    return jsonify(results)
+
+@app.route('/warp-ai/log-solution', methods=['POST'])
+def warp_log_solution():
+    """Log new solution to TechCorp knowledge base"""
+    data = request.json
+    problem = data.get('problem', '')
+    solution = data.get('solution', '')
+    category = data.get('category', 'general')
+    
+    result = techcorp_ai.execute_log_command(problem, solution, category)
+    return jsonify({'status': 'success', 'message': result})
+
+@app.route('/warp-ai/conversation-context')
+def warp_conversation_context():
+    """Get TechCorp Warp AI conversation context"""
+    context = techcorp_ai.get_conversation_context()
+    return jsonify({'context': context})
+
+@app.route('/warp-ai/knowledge-base')
+def warp_knowledge_base():
+    """Get TechCorp knowledge base contents"""
+    return jsonify({
+        'knowledge_base': techcorp_ai.kb.knowledge_base,
+        'solutions_log': techcorp_ai.kb.solutions
+    })
+
+@app.route('/warpgpt2/status')
+def warpgpt2_status():
+    """Get WarpGPT 2.0 system status"""
+    return jsonify(warpgpt.get_system_status())
+
+@app.route('/warpgpt2/kb-search', methods=['POST'])
+def warpgpt2_kb_search():
+    """WarpGPT 2.0 hybrid knowledge base search"""
+    data = request.json
+    query = data.get('query', '')
+    context = data.get('context', {})
+    
+    results, confidence = warpgpt.execute_kb_search(query, context)
+    return jsonify({
+        'results': results,
+        'confidence': confidence,
+        'threshold_met': confidence >= warpgpt.confidence_threshold,
+        'verified': confidence >= warpgpt.verified_threshold
+    })
+
+@app.route('/warpgpt2/process', methods=['POST'])
+def warpgpt2_process():
+    """Process request with WarpGPT 2.0 protocols"""
+    data = request.json
+    user_input = data.get('input', '')
+    
+    response = warpgpt.process_warp_request(user_input)
+    return jsonify({
+        'response': response,
+        'system_status': warpgpt.get_system_status(),
+        'timestamp': datetime.now().isoformat()
+    })
+
+@app.route('/warpgpt2/knowledge-base')
+def warpgpt2_knowledge_base():
+    """Get WarpGPT 2.0 knowledge base"""
+    return jsonify({
+        'knowledge_base': warpgpt.kb.knowledge_base,
+        'total_entries': len(warpgpt.kb.knowledge_base),
+        'confidence_threshold': warpgpt.confidence_threshold,
+        'verified_threshold': warpgpt.verified_threshold
     })
 
 @app.route('/dashboard')

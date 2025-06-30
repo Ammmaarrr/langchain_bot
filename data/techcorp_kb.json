@@ -1,0 +1,82 @@
+{
+  "vpn-22": {
+    "title": "VPN Connection Issues",
+    "category": "network",
+    "solution": [
+      "First try: `sudo service vpn restart`",
+      "Check firewall: `tcping your.vpn.server 443`",
+      "Verify credentials in `/etc/vpn/config`",
+      "Check DNS resolution: `nslookup your.vpn.server`"
+    ],
+    "tags": [
+      "vpn",
+      "connection",
+      "network",
+      "troubleshooting"
+    ]
+  },
+  "db-15": {
+    "title": "Database Connection Timeout",
+    "category": "database",
+    "solution": [
+      "Check connection pool: `ps aux | grep postgres`",
+      "Restart database service: `sudo systemctl restart postgresql`",
+      "Verify port availability: `netstat -tlnp | grep 5432`",
+      "Check logs: `tail -f /var/log/postgresql/postgresql.log`"
+    ],
+    "tags": [
+      "database",
+      "timeout",
+      "postgresql",
+      "connection"
+    ]
+  },
+  "ssl-08": {
+    "title": "SSL Certificate Errors",
+    "category": "security",
+    "solution": [
+      "⚠️ Check certificate expiry: `openssl x509 -in cert.pem -noout -dates`",
+      "Verify certificate chain: `openssl verify -CAfile ca.pem cert.pem`",
+      "Test SSL connection: `openssl s_client -connect domain.com:443`",
+      "Update certificate store: `sudo update-ca-certificates`"
+    ],
+    "tags": [
+      "ssl",
+      "certificate",
+      "security",
+      "https"
+    ]
+  },
+  "docker-03": {
+    "title": "Docker Container Won't Start",
+    "category": "containers",
+    "solution": [
+      "Check container logs: `docker logs container_name`",
+      "Inspect container config: `docker inspect container_name`",
+      "Check available resources: `docker system df`",
+      "Restart Docker daemon: `sudo systemctl restart docker`"
+    ],
+    "tags": [
+      "docker",
+      "container",
+      "startup",
+      "troubleshooting"
+    ]
+  },
+  "api-11": {
+    "title": "API Rate Limiting Issues",
+    "category": "api",
+    "solution": [
+      "Check current rate limits: `curl -I https://api.techcorp.com/status`",
+      "Implement exponential backoff in client code",
+      "Use API key rotation: Multiple keys for high-volume apps",
+      "Monitor usage: `curl -H 'Authorization: Bearer TOKEN' /api/usage`"
+    ],
+    "tags": [
+      "api",
+      "rate limit",
+      "throttling",
+      "performance"
+    ]
+  }
+}
